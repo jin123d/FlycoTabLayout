@@ -53,6 +53,7 @@
                 android:layout_height="48dp"
                 android:background="#3F9FE0"
                 tl:tl_textAllCaps="true"
+                tl:tab_background="?attr/selectableItemBackground"
                 tl:tl_textBold="BOTH"
                 tl:tl_textsize="14sp"/>
 

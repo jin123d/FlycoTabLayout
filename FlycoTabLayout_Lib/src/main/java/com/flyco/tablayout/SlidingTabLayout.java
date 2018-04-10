@@ -60,6 +60,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
     private float mTabPadding;
     private boolean mTabSpaceEqual;
     private float mTabWidth;
+    private int mTabBackground = 0;
 
     /** indicator */
     private int mIndicatorColor;
@@ -164,7 +165,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
         mTabSpaceEqual = ta.getBoolean(R.styleable.SlidingTabLayout_tl_tab_space_equal, false);
         mTabWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_tab_width, dp2px(-1));
         mTabPadding = ta.getDimension(R.styleable.SlidingTabLayout_tl_tab_padding, mTabSpaceEqual || mTabWidth > 0 ? dp2px(0) : dp2px(20));
-
+        mTabBackground = ta.getResourceId(R.styleable.SlidingTabLayout_tab_background, 0);
         ta.recycle();
     }
 
@@ -229,6 +230,9 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
         View tabView;
         for (int i = 0; i < mTabCount; i++) {
             tabView = View.inflate(mContext, R.layout.layout_tab, null);
+            if (mTabBackground != 0) {
+                tabView.setBackgroundResource(mTabBackground);
+            }
             CharSequence pageTitle = mTitles == null ? mViewPager.getAdapter().getPageTitle(i) : mTitles.get(i);
             addTab(i, pageTitle.toString(), tabView);
         }
